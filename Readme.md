@@ -7,7 +7,6 @@ Script shell para compilar arquivos .cpp para objects em c++ de forma recursiva.
 ```
 git clone git@github.com:GabrielDxgpx3/CppCrawler.git
 cd CppCrawler
-
 ```
 
 ## Iniciando

@@ -1,12 +1,12 @@
-#CppCrawler
+# CppCrawler
 
 Script shell para compilar arquivos .cpp para objects em c++ de forma recursiva.
 
-##Install
+## Install
 
 
 
-##Iniciando
+## Iniciando
 
 Para iniciar o script
 

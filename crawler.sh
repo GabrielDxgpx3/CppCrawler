@@ -2,7 +2,18 @@
 #author https://github.com/GabrielDxgpx3/
 
 listar_diretorios(){
-	diretorios=$(find -iname "*.cpp" | awk '{print substr($1,3);}')
+
+	if [ ! -f .lastcompile.txt ]
+	then
+		diretorios=$(find -iname "*.cpp" | awk '{print substr($1,3);}')
+		echo "Modo Normal"
+	else
+		diretorios=$(find -iname "*.cpp" -type f -cnewer .lastcompile.txt | awk '{print substr($1,3)}')
+		echo "Compilando arquivos alterados após "$(cat .lastcompile.txt)
+
+	fi
+
+	erro=0
 
 	if [[ $diretorios ]]
 	then
@@ -16,18 +27,28 @@ listar_diretorios(){
 				echo -ne "ok\n"
 			else
 				echo -ne " Erro ao compilar: $d\n"
+				erro=1
 			fi
 
 		done
+
+		if [ $erro -eq 0 ]
+		then
+			gravar_data_arquivo
+		fi
 	else
 		echo "não foram encontrados arquivos .cpp"
 	fi
 }
 
+gravar_data_arquivo(){
+
+	date +%F@%R > .lastcompile.txt
+}
+
 if [ -z $1 ]
 then
-	echo "Pasta destino não informada"
-
+	
 	if [ ! -d objects ]
 	then
 		echo "Criando uma..."
@@ -38,6 +59,7 @@ then
 	fi
 
 	listar_diretorios objects
+	
 
 else
 	if [ ! -d $1 ]
@@ -47,3 +69,5 @@ else
 		listar_diretorios $1
 	fi
 fi
+
+

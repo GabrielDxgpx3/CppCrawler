@@ -4,8 +4,8 @@ Script shell para compilar arquivos .cpp para objects em c++ de forma recursiva.
 
 ## Instalação
 
-```
-git clone git@github.com:GabrielDxgpx3/CppCrawler.git
+```shell
+git clone https://github.com/GabrielDxgpx3/CppCrawlergit clone 
 cd CppCrawler
 ```
 
